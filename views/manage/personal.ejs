@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+    <form action="/api/upload_avatar" method="post"  enctype="multipart/form-data">
+        <span>选择头像:</span>
+        <input type="file" accept="image/png,image/jpeg,image/gif" name="avatar" id="select_img">
+        <br>
+        <img src="" id="select_img_show">
+
+        <div>
+            <button type="submit">提交</button>
+        </div>
+    </form>
+</body>
+<script>
+
+    $("#select_img").change(function(){
+        var val = $('#select_img').val()
+        var imgurl = URL.createObjectURL($(this)[0].files[0])
+        console.log(val)
+        console.log(imgurl)
+
+        var fileSize = $(this)[0].files[0].size /1024
+        console.log(fileSize.toFixed(2))
+
+        $("#select_img_show").attr("src",URL.createObjectURL($(this)[0].files[0]));
+    })
+</script>
+</html>

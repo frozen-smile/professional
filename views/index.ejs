@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/layui/css/layui.css"  media="all">
+    <link rel='stylesheet' href='/public/css/style.css' />
+</head>
+<body>
+    <%- include ./web/head.ejs %>
+
+
+
+    <div class="wrap">
+
+        <div style="margin: 20px 0">
+              <a href="/login#hash=register">前往注册</a>
+              <a href="/login#hash=login">前往登录</a>
+        </div>
+
+        <div>
+            <h3>表情包</h3>
+            <table class="biaoqing">
+                <tr>
+                    <td>
+                        <img src="/public/img/biaoqingbao/v2-2e13fc037d0e6b028f812c619374adbe_b.jpg" alt="">
+                    </td>
+                    <td>
+                        <img src="/public/img/biaoqingbao/v2-02ab64b4c67c9a43a4234eb0d9be8a88_b.jpg" alt="">
+                    </td>
+                    <td>
+                        <img src="/public/img/biaoqingbao/v2-8cd690cac445703cb560ed0029771ae7_b.jpg" alt="">
+                    </td>
+                    <td>
+                        <img src="/public/img/biaoqingbao/v2-8d0c09ac6dee949e4797d39b38ecb82e_b.jpg" alt="">
+                    </td>
+                </tr>
+
+          </table>
+      </div>
+      </div>
+
+
+
+</body>
+<script src="/public/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element
+            ,$ = layui.jquery;
+
+        $('.layui-nav-item').eq(0).addClass('layui-this')
+
+
+    });
+</script>
+</html>

@@ -1,0 +1,26 @@
+.wrap {
+  padding: 30px 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #2d8cf0;
+  background: 0 0;
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transition: color .2s ease;
+  transition: color .2s ease;
+}
+
+.biaoqing tr{
+
+}
+.biaoqing td{
+  width: 200px;
+  height: 220px;
+  padding: 20px;
+}
+.biaoqing img{
+  width: 100%;
+}

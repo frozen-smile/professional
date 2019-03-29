@@ -1,0 +1,42 @@
+
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="/">主页</a></li>
+    <li class="layui-nav-item"><a href="/essay">随笔</a></li>
+    <li class="layui-nav-item">
+        <a href="/article">文章</a>
+        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+            <dd><a href="/dev">技术</a></dd>
+            <dd><a href="/novel">小说</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="/album">相册</a></li>
+    <li class="layui-nav-item"><a href="/message">留言</a></li>
+    <li class="layui-nav-item"><a href="/about">关于</a></li>
+    <p class="blog_name">灰色森林的树洞小屋</p>
+
+    <li class="layui-nav-item personal ">
+        <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
+        <dl class="layui-nav-child">
+            <dd><a href="/personal">个人中心<span class="layui-badge-dot"></span></a></dd>
+            <dd><a href="javascript:;">控制台<span class="layui-badge">9</span></a></dd>
+            <dd><a href="javascript:;">退了</a></dd>
+        </dl>
+    </li>
+</ul>
+<style>
+    .layui-nav{position: relative}
+    .blog_name{
+        position: absolute;
+        right: 2%;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: white;
+        margin-right: 104px;
+    }
+    .layui-nav .personal{
+        position: absolute;
+        right: 2%;
+        top: 0;
+    }
+</style>

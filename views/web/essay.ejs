@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随笔</title>
+    <link rel="stylesheet" href="/public/layui/css/layui.css"  media="all">
+</head>
+<body>
+    <%- include head.ejs %>
+    <h3>这里是随笔</h3>
+    <p>随笔是一些小短剧，一般只有一两段的记录</p>
+</body>
+<script src="/public/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element
+            ,$ = layui.jquery;
+
+        $('.layui-nav-item').eq(1).addClass('layui-this')
+
+
+    });
+</script>
+</html>
