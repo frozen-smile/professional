@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/public/layui/css/layui.css"  media="all">
+    <title>灰色森林的树洞小屋</title>
     <link rel='stylesheet' href='/public/css/style.css' />
 </head>
 <body>
@@ -11,12 +10,7 @@
 
 
     <div class="wrap">
-
-        <div style="margin: 20px 0">
-              <a href="/login#hash=register">前往注册</a>
-              <a href="/login#hash=login">前往登录</a>
-        </div>
-
+        <div> <%= nick_name %> </div>
         <div>
             <h3>表情包</h3>
             <table class="biaoqing">
@@ -42,15 +36,4 @@
 
 
 </body>
-<script src="/public/layui/layui.js" charset="utf-8"></script>
-<script>
-    layui.use('element', function(){
-        var element = layui.element
-            ,$ = layui.jquery;
-
-        $('.layui-nav-item').eq(0).addClass('layui-this')
-
-
-    });
-</script>
 </html>

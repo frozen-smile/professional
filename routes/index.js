@@ -3,38 +3,70 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log('用户',req.session.userName)
-    console.log('用户',req.session)
-    console.log('用户',req.id)
-    res.render('index', { title: '灰色森林的树洞小屋' });
+    console.log('用户session',req.session)
+    console.log('用户cookie',req.signedCookies)
+
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('index', {nick_name: nick_name || '',avatar:avatar_path || ''});
 });
 
 router.get('/login',function (req, res) {
-    res.render('web/login')
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('web/login', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
 router.get('/essay',function (req, res) {
-    res.render('web/essay')
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('web/essay', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
 router.get('/article',function (req, res) {
-    res.render('web/article')
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('web/article', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
 router.get('/album',function (req, res) {
-    res.render('web/album')
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('web/album', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
 router.get('/message',function (req, res) {
-    res.render('web/message')
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('web/message', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
 router.get('/about',function (req, res) {
-    res.render('web/about')
+    var nick_name = req.signedCookies.user_name;
+    var avatar_path = req.signedCookies.avatar;
+    res.render('web/about', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
+
+//管理界面路由
 router.get('/personal',function (req, res) {
-    res.render('manage/personal')
+    var nick_name = req.signedCookies.user_name;
+    if (!nick_name){
+        res.redirect('/login#hash=login')
+        res.end()
+    }
+    var avatar_path = req.signedCookies.avatar;
+    res.render('manage/personal', {nick_name: nick_name || '',avatar:avatar_path || ''});
+})
+
+router.get('/avatar',function (req, res) {
+    var nick_name = req.signedCookies.user_name;
+    res.render('manage/avatar')
+})
+
+router.get('/manage',function (req, res) {
+    var nick_name = req.signedCookies.user_name;
+    res.render('manage/manage')
 })
 
 module.exports = router;

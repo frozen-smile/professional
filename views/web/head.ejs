@@ -1,4 +1,21 @@
-
+<link rel="stylesheet" href="/public/layui/css/layui.css"  media="all">
+<style>
+    .layui-nav{position: relative}
+    .blog_name{
+        position: absolute;
+        right: 2%;
+        top: 48%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        margin-right: 140px;
+    }
+    .layui-nav .personal{
+        position: absolute;
+        right: 2%;
+        top: 0;
+    }
+</style>
 <ul class="layui-nav" lay-filter="">
     <li class="layui-nav-item"><a href="/">主页</a></li>
     <li class="layui-nav-item"><a href="/essay">随笔</a></li>
@@ -12,31 +29,37 @@
     <li class="layui-nav-item"><a href="/album">相册</a></li>
     <li class="layui-nav-item"><a href="/message">留言</a></li>
     <li class="layui-nav-item"><a href="/about">关于</a></li>
-    <p class="blog_name">灰色森林的树洞小屋</p>
 
+    <% if (nick_name){ %>
     <li class="layui-nav-item personal ">
-        <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
+        <a href=""><img src="<%= avatar %>" class="layui-nav-img"><%= nick_name %> </a>
         <dl class="layui-nav-child">
             <dd><a href="/personal">个人中心<span class="layui-badge-dot"></span></a></dd>
             <dd><a href="javascript:;">控制台<span class="layui-badge">9</span></a></dd>
-            <dd><a href="javascript:;">退了</a></dd>
+            <dd><a href="/api/quit">退了</a></dd>
         </dl>
     </li>
+    <% } else{  %>
+    <li class="layui-nav-item personal"><a href="/login#hash=login">登录</a></li>
+    <% } %>
+
+    <p class="blog_name">灰色森林的树洞小屋</p>
+
 </ul>
-<style>
-    .layui-nav{position: relative}
-    .blog_name{
-        position: absolute;
-        right: 2%;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 16px;
-        color: white;
-        margin-right: 104px;
-    }
-    .layui-nav .personal{
-        position: absolute;
-        right: 2%;
-        top: 0;
-    }
-</style>
+<script src="/public/layui/layui.js" charset="utf-8"></script>
+<script>
+    var obj = {'/':0, '/essay':1, '/article':2, '/album':3, '/message':4, '/about':5, '/personal':6}
+
+    layui.use('element', function(){
+        var element = layui.element;
+        var $ = layui.jquery;
+
+        console.log(location.pathname)
+        var idx = obj[location.pathname]
+        $('.layui-nav-item').eq(idx).addClass('layui-this')
+
+    });
+
+
+</script>
+

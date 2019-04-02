@@ -24,9 +24,9 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser('wetr'));
+app.use(cookieParser('deep'));
 app.use(session({
-    secret :  'wetr', // 对session id 相关的cookie 进行签名
+    secret :  'deep', // 对session id 相关的cookie 进行签名
     resave : true,
     saveUninitialized: false, // 是否保存未初始化的会话
     cookie : {
@@ -39,6 +39,16 @@ app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ dest: '/tmp/'}).array('avatar'));
 
+// app.use(function (req, res, next) {
+//     // var nick_name = req.session.user_name;
+//     // var user_avatar = req.session.user_avatar;
+//     // var data = {nick_name: nick_name || '',user_avatar: user_avatar }
+//     // req.cookies = cookie.parse(req.headers.cookie);
+//     console.log('req.cookies',req.cookies)
+//     next()
+// })
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', web_api);
@@ -46,26 +56,26 @@ app.use('/api', web_api);
 
 
 
-app.post('/api/upload_avatar', function (req, res) {
-    var thisfile = req.files[0];
-    console.log(thisfile);  // 上传的文件信息
-
-    var des_file = __dirname + "/" + thisfile.originalname;
-    fs.readFile( thisfile.path, function (err, data) {
-        fs.writeFile(des_file, data, function (err) {
-            if( err ){
-                console.log( err );
-            }else{
-                response = {
-                    message:'File uploaded successfully',
-                    filename:thisfile.originalname
-                };
-            }
-            console.log( response );
-            res.end( JSON.stringify( response ) );
-        });
-    });
-})
+// app.post('/api/upload_avatar', function (req, res) {
+//     var thisfile = req.files[0];
+//     console.log(thisfile);  // 上传的文件信息
+//
+//     var des_file = __dirname + "/" + thisfile.originalname;
+//     fs.readFile( thisfile.path, function (err, data) {
+//         fs.writeFile(des_file, data, function (err) {
+//             if( err ){
+//                 console.log( err );
+//             }else{
+//                 response = {
+//                     message:'File uploaded successfully',
+//                     filename:thisfile.originalname
+//                 };
+//             }
+//             console.log( response );
+//             res.end( JSON.stringify( response ) );
+//         });
+//     });
+// })
 
 
 

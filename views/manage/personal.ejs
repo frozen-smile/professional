@@ -3,31 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
+    <link rel="stylesheet" href="/public/layui/css/layui.css" media="all">
+
+    <meta name="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        iframe{
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
 </head>
-<body>
-    <form action="/api/upload_avatar" method="post"  enctype="multipart/form-data">
-        <span>选择头像:</span>
-        <input type="file" accept="image/png,image/jpeg,image/gif" name="avatar" id="select_img">
-        <br>
-        <img src="" id="select_img_show">
+<body class="layui-layout-body">
 
-        <div>
-            <button type="submit">提交</button>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">灰色森林的树洞小屋</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="/personal">主页</a></li>
+                <li class="layui-nav-item"><a href="/">博客</a></li>
+
+            </ul>
+            <ul class="layui-nav" lay-filter="">
+
+                <li class="layui-nav-item layui-layout-right layui-this" style="right: 2%">
+                    <a href=""><img src="<%= avatar %> " class="layui-nav-img"><%= nick_name %> </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/personal">个人中心<span class="layui-badge-dot"></span></a></dd>
+                        <dd><a href="javascript:;">控制台<span class="layui-badge">9</span></a></dd>
+                        <dd><a href="/api/quit">退了</a></dd>
+                    </dl>
+                </li>
+            </ul>
         </div>
-    </form>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">账号管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/avatar">更改头像</a></dd>
+                            <dd><a href="javascript:;">更改密码</a></dd>
+                            <dd><a href="javascript:;">列表三</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">列表一</a></dd>
+                            <dd><a href="javascript:;">列表二</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">云市场</a></li>
+                    <li class="layui-nav-item"><a href="">发布商品</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <iframe id="index_iframe" src="/manage"></iframe>
+
+
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 </body>
+
+<script src="/public/layui/layui.js" charset="utf-8"></script>
 <script>
+    var obj = {'/':0, '/essay':1, '/article':2, '/album':3, '/message':4, '/about':5, '/personal':6}
 
-    $("#select_img").change(function(){
-        var val = $('#select_img').val()
-        var imgurl = URL.createObjectURL($(this)[0].files[0])
-        console.log(val)
-        console.log(imgurl)
+    layui.use('element', function(){
+        var element = layui.element;
+        var $ = layui.jquery;
 
-        var fileSize = $(this)[0].files[0].size /1024
-        console.log(fileSize.toFixed(2))
+        $('.layui-nav-tree .layui-nav-child a').click(function (e) {
+            var even = event || e;
+            even.preventDefault();
+            var tar = $(this).attr('href')
+            $('#index_iframe').prop('src',tar)
 
-        $("#select_img_show").attr("src",URL.createObjectURL($(this)[0].files[0]));
-    })
+        })
+        // console.log(location.pathname)
+        // var idx = obj[location.pathname]
+        // $('.layui-nav-item').eq(idx).addClass('layui-this')
+
+    });
+
 </script>
 </html>

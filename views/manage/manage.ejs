@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="/public/layui/css/layui.css" media="all">
+
+    <meta name="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        iframe{
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+    <div>
+        内容主体区域
+        <h1>文章统计</h1>
+        <h1>流量统计</h1>
+        <h1>标签统计</h1>
+    </div>
+
+
+</body>
+
+<script src="/public/layui/layui.js" charset="utf-8"></script>
+<script>
+    var obj = {'/':0, '/essay':1, '/article':2, '/album':3, '/message':4, '/about':5, '/personal':6}
+
+    layui.use('element', function(){
+        var element = layui.element;
+        var $ = layui.jquery;
+
+        // console.log(location.pathname)
+        // var idx = obj[location.pathname]
+        // $('.layui-nav-item').eq(idx).addClass('layui-this')
+
+    });
+
+</script>
+</html>
