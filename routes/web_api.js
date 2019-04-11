@@ -17,13 +17,8 @@ router.post('/register',function (req,res) {
             res.end()
             return;
         }
-
-        var dirpath = path.join(__dirname,'../public/img/avatar'+req.body.user_name)
-        fs.mkdirSync(dirpath)
-
         res.send({"status":"200","msg":"OK"});
         res.end();
-
     });
 })
 //判断用户名是否被占用
@@ -68,7 +63,7 @@ router.post('/login',function (req,res) {
                 'httpOnly': true,
             })
             console.log('数据库查询头像结果' + result[0].avatar)
-            var avatar = result[0].avatar ? result[0].avatar : '';
+            var avatar = result[0].avatar ? result[0].avatar : '/public/img/avatar/avatar.jpg';
             res.cookie('avatar',avatar, {
                 'maxAge': 1000 * 3600 * 12,
                 'signed': true,
@@ -104,8 +99,14 @@ router.post('/upload_avatar', function (req, res) {
     var dataBuffer = new Buffer(base64Data, 'base64');
     var imgpath = path.join(__dirname,'../public/img/avatar/'+user_name+'/avatar.jpg')
 
-    fs.writeFileSync(imgpath,dataBuffer)
+    var dirpath = path.join(__dirname,'../public/img/avatar/'+ user_name)
+    var exists = fs.existsSync(dirpath)
 
+    if (!exists){
+        fs.mkdirSync(dirpath)
+    }
+
+    fs.writeFileSync(imgpath,dataBuffer)
     var sqp = 'update users set avatar = ? where user_name = ?';
     var avatar_path = '/public/img/avatar/' + user_name + '/avatar.jpg';
     var sqlParams = [avatar_path, user_name];
@@ -116,9 +117,50 @@ router.post('/upload_avatar', function (req, res) {
             res.end()
             return;
         }
+        res.cookie('avatar',avatar_path, {
+            'maxAge': 1000 * 3600 * 12,
+            'signed': true,
+            'httpOnly': true,
+        })
         res.send({"status":"200","msg":"OK"});
         res.end();
     });
+})
+
+
+//修改密码
+router.post('/change_pass', function (req, res) {
+    var user_name = req.signedCookies.user_name;
+
+    var old_pass = req.body.old_pass;
+    var new_pass = req.body.new_pass;
+    console.log('修改密码的body' + old_pass)
+    console.log('修改密码的body' + new_pass)
+
+    mysql.query('select * from users where user_name = ?',user_name, function(err, result) {
+        if(err){
+            console.log('修改密码查找账号报错：',err.message);
+            res.send({"status":"400","msg":"ERR"});
+            res.end()
+        }
+        if (result[0].password==old_pass){
+            var sqp = 'update users set password = ? where user_name = ?';
+            var sqlParams = [new_pass, user_name];
+            mysql.query(sqp,sqlParams,function (err, result) {
+                if(err){
+                    console.log('修改密码报错：',err.message);
+                    res.send({"status":"400","msg":"ERR"});
+                    res.end()
+                }
+                res.clearCookie('user_name')
+                res.clearCookie('avatar')
+                res.send({"status":"200","msg":"OK"});
+                res.end();
+            });
+        }
+    })
+
+
 })
 
 

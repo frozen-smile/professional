@@ -3,10 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>文章</title>
+    <style>
+        body{
+
+        }
+        .wrap{
+            position: relative;
+            height: calc(100vh - 60px);
+        }
+        .bg{
+            width: 100%;
+            height: 100%;
+            background-image: url("/public/img/article/shuji-013.jpg");
+            background-size: cover;
+            /*background-position: center;*/
+            /*background-repeat: no-repeat;*/
+            filter: blur(2px);
+        }
+        .content{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .lie{
+            height: 80vh;
+            width: 1px;
+            background: gainsboro;
+            position: absolute;
+            left: 50%;
+            top: 5%;
+        }
+        .column{
+            /*position: absolute;*/
+            /*top: 10%;*/
+            padding-top: 5vh;
+            width: 49%;
+        }
+        .title_mid{
+            font-size: 16px;
+            /*font-weight: bold;*/
+        }
+        .left{
+            float: left;
+            text-align: right;
+
+        }
+        .right{
+            float: right;
+            text-align: left;
+        }
+        .clear{
+            display: block;
+            clear: both;
+        }
+
+    </style>
 </head>
 <body>
     <%- include head.ejs %>
-    <h3>这里是文章主页</h3>
-    <p>准备页面布局，寄语，子目录跳转链接</p>
+
+    <!--<h3>这里是文章主页</h3>-->
+    <!--<p>准备页面布局，寄语，子目录跳转链接</p>-->
+
+
+    <div class="wrap">
+        <div class="bg"></div>
+
+        <div class="content">
+            <div class="column left">
+                <h3 class="title_mid">技术</h3>
+                <p class="description"></p>
+            </div>
+
+            <div class="lie"></div>
+
+            <div class="column right">
+                <h3 class="title_mid">文章</h3>
+                <p class="description"></p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="clear"></div>
+
 </body>
 </html>

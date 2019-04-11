@@ -39,14 +39,6 @@ app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ dest: '/tmp/'}).array('avatar'));
 
-// app.use(function (req, res, next) {
-//     // var nick_name = req.session.user_name;
-//     // var user_avatar = req.session.user_avatar;
-//     // var data = {nick_name: nick_name || '',user_avatar: user_avatar }
-//     // req.cookies = cookie.parse(req.headers.cookie);
-//     console.log('req.cookies',req.cookies)
-//     next()
-// })
 
 
 app.use('/', indexRouter);
@@ -76,20 +68,6 @@ app.use('/api', web_api);
 //         });
 //     });
 // })
-
-
-
-// app.post('/api/upload_avatar',function (req, res) {
-//     console.log(req.files[0]);
-//     var des_file = __dirname + "/" + req.files[0].originalname;
-//     fs.readFileSync()
-//
-//
-// })
-
-
-
-
 
 
 

@@ -156,6 +156,7 @@
                 .then(function (data) {
                     console.log(data)
                     if (data.msg == "OK"){
+                        layer.msg('注册成功，请登录')
                         element.tabChange('hash', 'login');
                     }
                 }).catch(function (err) {

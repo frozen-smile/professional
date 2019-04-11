@@ -59,14 +59,16 @@ router.get('/personal',function (req, res) {
     res.render('manage/personal', {nick_name: nick_name || '',avatar:avatar_path || ''});
 })
 
+router.get('/manage',function (req, res) {
+    res.render('manage/manage')
+})
+
 router.get('/avatar',function (req, res) {
-    var nick_name = req.signedCookies.user_name;
     res.render('manage/avatar')
 })
 
-router.get('/manage',function (req, res) {
-    var nick_name = req.signedCookies.user_name;
-    res.render('manage/manage')
+router.get('/password',function (req, res) {
+    res.render('manage/password')
 })
 
 module.exports = router;
